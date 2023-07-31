@@ -6,6 +6,10 @@ This is a summer research project based on the Circulant Traveling Salesman Prob
 
 In collaboration with another undergraduate and Professor Gutekunst, we focused on finding minimum-cost Hamiltonian paths instead of cycles, meaning our goal was to find a way to visit all n vertices exactly once, while using the lowest total edge costs as possible. We developed and implemented algorithms in Java to study how the number of possible solutions grows with the size of the input. We ran numerical experiments to conjecture theoretical results, and proved them using techniques from combinatorics and number theory.
 
+**Takeaway**
+
+Calculating the number of edge-length vectors is “easy” when an integer n can be expressed in the form p, p1 * p2, p1^k, p1^2 * p2, or p1 * p2 * p3. This means that the number of minimum-cost Hamiltonian paths in the Circulant TSP can be quickly found from a value of n that can be written in any of those ways.
+
 **Important technical terminology: encoding sequences, G-Sequences, and edge-length vectors (ELV)**
 
 Encoding sequences are minimum-cost Hamiltonian paths, which can all be represented as a sequence in the form (n, _, …, _). All of the valid sequences can be formed from the integers 1 to n/2, which is the set {1, …, floor(n/2)}. To form a valid sequence, you start with n and add a number from the set and find the greatest common divisor (GCD). If the GCD of these two terms is 1, then this is the end of a valid sequence. If the GCD is not 1, then add another number from the set and take the GCD of the newly added term and the previous GCD. If the GCD is not strictly decreasing, meaning the newest GCD >= previous GCD, then that sequence is invalid. Repeat this process of only adding terms that create a strictly decreasing GCD and ending the sequence once the GCD is 1. By testing all permutations, we can find all valid sequences. 
@@ -22,13 +26,15 @@ ELV = <3, 0, 0, 4>
 Meaning this Hamiltonian path uses three length-1 edges and four length-4 edges.
 
 **Files**
+
 **GSequence**: generate all valid G-Sequences for a given n
+
 **GreedyELVCount**: create a permutation of every possible encoding sequence and count the valid ones
+
 **SmartELVCount**: from a list of all G-Sequences, generate and count all valid encoding sequences
+
 **PrimeELVCount**: formulas to quickly count ELV when n = p1 * p2 (p2 > p1 ≥ 2) and n = p1^k (p1 ≥ 3) where p1, p2 are distinct prime numbers, k is an integer ≥ 1
+
 **ComplementELVCount**: formulas to quickly count ELV by complement when n = p1^2 * p2 and n = p1 * p2 * p3 where p1, p2, p3 are distinct prime numbers
+
 **AlgorithmTester**: check the accuracy of the formulas with the results from the smart algorithm for the same value of n
-
-**Takeaway**
-Calculating the number of ELV is “easy” when an integer n can be expressed in the form p, p1 * p2, p1^k, p1^2 * p2, or p1 * p2 * p3. This means that the number of minimum-cost Hamiltonian paths in the Circulant TSP can be quickly found from a value of n that can be written in any of those ways.
-
