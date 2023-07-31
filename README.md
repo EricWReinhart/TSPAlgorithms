@@ -10,7 +10,7 @@ In collaboration with another undergraduate and Professor Gutekunst, we focused 
 
 Calculating the number of edge-length vectors is “easy” when an integer n can be expressed in the form p, p1 * p2, p1^k, p1^2 * p2, or p1 * p2 * p3. This means that the number of minimum-cost Hamiltonian paths in the Circulant TSP can be quickly found from a value of n that can be written in any of those ways.
 
-**Important technical terminology: encoding sequences, G-Sequences, and edge-length vectors (ELV)**
+**Technical Terminology: Encoding Sequences, G-Sequences, and Edge-Length Vectors (ELV)**
 
 Encoding sequences are minimum-cost Hamiltonian paths, which can all be represented as a sequence in the form (n, _, …, _). All of the valid sequences can be formed from the integers 1 to n/2, which is the set {1, …, floor(n/2)}. To form a valid sequence, you start with n and add a number from the set and find the greatest common divisor (GCD). If the GCD of these two terms is 1, then this is the end of a valid sequence. If the GCD is not 1, then add another number from the set and take the GCD of the newly added term and the previous GCD. If the GCD is not strictly decreasing, meaning the newest GCD >= previous GCD, then that sequence is invalid. Repeat this process of only adding terms that create a strictly decreasing GCD and ending the sequence once the GCD is 1. By testing all permutations, we can find all valid sequences. 
 Example: consider n = 8 which has edge-lengths {1, 2, 3, 4}. The valid encoding sequences are (8,1), (8,2,1), (8,4,1), (8,4,2,1). An invalid encoding sequence would be (8,3,1) since GCD(8,3) = 1 = GCD(3,1), so the GCD is not strictly decreasing.
