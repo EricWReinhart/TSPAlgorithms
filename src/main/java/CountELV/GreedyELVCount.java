@@ -3,27 +3,18 @@ package CountELV;
 import java.util.ArrayList;
 
 /**
- * Permute all possible encoding sequences
+ * Create all possible encoding sequences with permutations
  */
 public class GreedyELVCount {
     private static int countELV;
 
     /**
-     * Creates possible encoding sequences
-     * @param n counting n ELV
-     * @param maxSumOfExponents longest permutation = sum of exponents of the primes whose product is n
-     */
-    public GreedyELVCount(int n, int maxSumOfExponents) {
-        permuteSequence(n, maxSumOfExponents);
-    }
-
-    /**
      * Find all possible values in an encoding sequence for a given n then recursively create
      * every valid sequence starting with each of these values
      * @param n counting ELV for the number n
-     * @param sumOfExponents longest length permutation possible
+     * @param sumOfExponents longest length permutation = sum of exponents of the primes whose product is n
      */
-    private static void permuteSequence(int n, int sumOfExponents){
+    public static void permuteSequence(int n, int sumOfExponents){
         countELV = 0;
         // Highest possible term in an encoding sequence after n is n/2
         int maxValue = n/2;
@@ -58,17 +49,6 @@ public class GreedyELVCount {
             countELV++;
             return;
         }
-
-        // TODO: this check is never hit i think??
-//        if (perm[index-1] == 1){
-//            countELV++;
-//            System.out.println(Arrays.toString(perm));
-//            return;
-//        }
-//        if (index == perm.length){
-//            countELV++;
-//            return;
-//        }
 
         // Recursively create the rest of the sequence by attempting to add every possible value one-at-a-time
         for (int possibleValue : possibleValues) {

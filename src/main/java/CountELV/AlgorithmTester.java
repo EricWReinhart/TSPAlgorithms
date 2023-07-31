@@ -10,7 +10,7 @@ public class AlgorithmTester {
 
     public static void main(String[] args) {
         // List ELV for a given range of both Smart & Greedy and says when they're different
-        compareGreedyVsSmart(10, 25);
+        compareGreedyVsSmart(10, 30);
 
         // n = p1 * p2
         checkPrimeTimesPrimeAccuracy();
@@ -38,7 +38,7 @@ public class AlgorithmTester {
         // Check values of n ranging from start to end (inclusive)
         for (int i = start; i <= end; i++) {
             smartAlg = new SmartELVCount(i, false);
-            GreedyELVCount greedyAlg = new GreedyELVCount(i, 8);
+            GreedyELVCount.permuteSequence(i, 8);
             int smartCount = SmartELVCount.getCountELV();
             int greedyCount = GreedyELVCount.getCountELV();
             valuesChecked++;

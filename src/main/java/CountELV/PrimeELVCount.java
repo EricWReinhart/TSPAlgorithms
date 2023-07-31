@@ -2,7 +2,7 @@ package CountELV;
 
 // Count ELV when multiplying distinct primes
 public class PrimeELVCount {
-    // Count ELV when n = p1 * p2,  p2 > p1 > 2
+    // Count ELV when n = p1 * p2,  p2 > p1 >= 2
     public static int primeTimesPrime(int p1, int p2) {
         int num = p1 * p2;
         int col0 = p1 / 2;
