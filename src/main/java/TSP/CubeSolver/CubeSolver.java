@@ -1,7 +1,7 @@
 package TSP.CubeSolver;
 
 /**
- * Solves Circulant TSP instances such that n = p^3, a1 = p^2, a2 = p, a3 = relatively prime to n
+ * Solve Circulant TSP instances such that n = p^3, a1 = p^2, a2 = p, a3 = relatively prime to n
  */
 public class CubeSolver {
     private static final int startIndex = 1;
@@ -17,7 +17,7 @@ public class CubeSolver {
     private int[] tour;
 
     /**
-     * Solves Circulant TSP instances such that n = p^3, a1 = p^2, a2 = p, a3 = relatively prime to n
+     * Solve Circulant TSP instances such that n = p^3, a1 = p^2, a2 = p, a3 = relatively prime to n
      * @param p prime
      * @param a3 relatively prime to n
      * @param print boolean to print results
@@ -195,7 +195,7 @@ public class CubeSolver {
     private void setNext(Jump direction){
         switch (direction) {
             case Left -> {
-                tour[lastNode + 1] = modN(tour[lastNode] + -a2);
+                tour[lastNode + 1] = modN(tour[lastNode] - a2);
                 a2Count++;
             }
             case Right -> {
@@ -368,5 +368,4 @@ public class CubeSolver {
             print2d(sheet);
         }
     }
-
 }
