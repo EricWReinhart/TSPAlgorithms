@@ -1,4 +1,10 @@
-package CountELV;
+package TSP.AlgorithmTester;
+
+import TSP.CountELV.ComplementELVCount;
+import TSP.CountELV.GreedyELVCount;
+import TSP.CountELV.PrimeELVCount;
+import TSP.CountELV.SmartELVCount;
+import TSP.CubeSolver.CubeSolver;
 
 import java.util.ArrayList;
 
@@ -23,6 +29,40 @@ public class AlgorithmTester {
 
         // n = p1 * p2 * p3 by complement
         checkP1P2P3Accuracy();
+
+        // n = p^3, a1 = p^2, a2 = p, a3 = relatively prime to n
+        checkCubeSolver();
+    }
+
+    /**
+     * Check if the CubeSolver algorithm works for a range of prime numbers and varying a3 values
+     */
+    public static void checkCubeSolver() {
+        int[] primeList = {3, 5, 7, 11, 13, 17, 19, 23};
+        ArrayList<Integer> wrongResults = new ArrayList<>();
+        int primesChecked = 0;
+
+        // Check each prime with varying a3 values
+        for (int p : primeList) {
+            double n = p * p * p;
+            int largestA3 = (int) Math.floor(n / 2);
+            for (int i = 0; i <= largestA3; i++) {
+                // a3 cannot be a multiple of p
+                if (i % p == 0)
+                    continue;
+                CubeSolver current = new CubeSolver(p, i, false);
+
+                // Store values of n that produce a non-optimal solution
+                if (!current.isOptimal()) {
+                    current.printStats();
+                    current.printTour();
+                    wrongResults.add(i);
+                    break;
+                }
+            }
+            primesChecked++;
+        }
+        printResults(wrongResults, primesChecked, "Cube Solver");
     }
 
     /**

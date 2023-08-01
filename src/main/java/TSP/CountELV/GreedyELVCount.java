@@ -1,9 +1,9 @@
-package CountELV;
+package TSP.CountELV;
 
 import java.util.ArrayList;
 
 /**
- * Create all possible encoding sequences with permutations
+ * Create all possible encoding sequences by using permutations
  */
 public class GreedyELVCount {
     private static int countELV;
@@ -94,6 +94,7 @@ public class GreedyELVCount {
         return GCD(n2, n1 % n2);
     }
 
+    /** Return ELV count */
     public static int getCountELV() {
         return countELV;
     }

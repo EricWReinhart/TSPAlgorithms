@@ -27,7 +27,7 @@ Meaning this Hamiltonian path uses three length-1 edges and four length-4 edges.
 
 **Files**
 
-**GSequence**: generate all valid G-Sequences for a given n
+**TSP.CountELV**: generate all valid G-Sequences for a given n
 
 **GreedyELVCount**: create a permutation of every possible encoding sequence and count the valid ones
 

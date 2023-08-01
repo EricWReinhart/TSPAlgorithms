@@ -1,7 +1,12 @@
-package CountELV;
+package TSP.CountELV;
+
+import TSP.GSequence.GSequence;
 
 import java.util.ArrayList;
 
+/**
+ * Count ELV from a list of G-Sequences
+ */
 public class SmartELVCount {
     private static int countELV;
     private final boolean save;
@@ -94,6 +99,7 @@ public class SmartELVCount {
         return output;
     }
 
+    /** Return ELV count */
     public static int getCountELV() {
         return countELV;
     }

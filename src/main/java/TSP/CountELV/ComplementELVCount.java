@@ -1,10 +1,10 @@
-package CountELV;
+package TSP.CountELV;
 
 /**
- * Count edge length vectors (ELV) by complement for n = p1^2 * p2 and n = p1 * p2 * p3, where p1, p2, p3 are distinct primes
+ * Count edge length vectors (ELV) by complement for n = p1^2 * p2 and n = p1 * p2 * p3
+ * where p1, p2, p3 are distinct primes
  */
 public class ComplementELVCount {
-
     /**
      * Count ELV by complement for n = p1^2 * p2
      * @param p1 any prime

@@ -1,8 +1,11 @@
-package CountELV;
+package TSP.GSequence;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Create all G-Sequences
+ */
 public class GSequence {
     // ArrayList that holds every possible G-Sequence for a given n
     private static ArrayList<ArrayList<Integer>> gSequencesList = new ArrayList<>();
