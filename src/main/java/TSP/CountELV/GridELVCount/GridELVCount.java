@@ -1,7 +1,5 @@
 package TSP.CountELV.GridELVCount;
 
-import TSP.CountELV.SmartELVCount;
-
 import java.math.BigInteger;
 
 /**
@@ -19,51 +17,9 @@ public class GridELVCount {
     public static BigInteger[][] lookUpTable;
     public static boolean print;
 
-    public static void main(String[] args) {
-        print = false;
-        long startTime = System.nanoTime();
-//        GridSlacker test = new GridSlacker(2, 3, 3, 3);
-//        testCorrectAnswer();
-        testRunTimes();
-        long endTime = System.nanoTime();
-
-        long duration = (endTime - startTime) / 1000000;
-
-        print = true;
-        //test.root.computeTotal();
-        System.out.printf("execution took %d milliseconds, or as %f seconds%n",duration, duration/1000.0);
-    }
-
-    private static void testRunTimes(){
-        for (int i = 1; i < 4; i++) {
-            long startTime = System.nanoTime();
-            GridELVCount test = new GridELVCount(17, i, 13, i);
-            long endTime = System.nanoTime();
-            long duration = (endTime - startTime) / 1000000;
-            System.out.println("i: " + i + ", milliseconds: " + duration + ", count: " + test.getTotal());
-        }
-    }
-
-    private static void testCorrectAnswer(){
-        int[] primes = {2,3,5};
-        for (int i = 0; i < primes.length-1; i++) {
-            int p1 = primes[i];
-            for (int j = i+1; j < primes.length; j++) {
-                int p2 = primes[j];
-                GridELVCount test = new GridELVCount(p1, 2, p2, 3);
-                SmartELVCount smartAlg = new SmartELVCount((int) test.n.longValue(), false);
-                int val = SmartELVCount.getCountELV();
-                if (test.getTotal().compareTo(BigInteger.valueOf(val)) == 0){
-                    System.out.println("passed for " + p1 + ", " + p2);
-                }
-                else{
-                    System.out.println("FAILED for " + p1 + ", " + p2 + ", got " + test.getTotal());
-                }
-            }
-
-        }
-    }
-
+    /**
+     * Compute the ELV count for n = prime1^pow1 * prime2^pow2
+     */
     public GridELVCount(int prime1, int pow1, int prime2, int pow2){
         p1 = prime1;
         p1Power = pow1;
@@ -89,16 +45,22 @@ public class GridELVCount {
         generateBoxes();
     }
 
+    /**
+     * Kicks off computation of ELV count by creating the root box that
+     * represents n and starts the chain of creating children
+     */
     private void generateBoxes(){
         root = new Box(p1Power, p2Power, BigInteger.ONE, BigInteger.ZERO);
         root.createChildren();
         root.computeTotal();
     }
 
-    public BigInteger getTotal(){
-        return root.getTotal();
-    }
-
+    /**
+     * the lookup table is a grid that represents the different power combinations of p1 and p2
+     * for example, lookupTable[1][2] is the amount of numbers < n/2 such that they have p1^1 * p2^2 as a factor
+     * a number goes into the largest slot it possibly can fit
+     * for example, if a number has p1^2 * p2^2, it would NOT be placed in lookupTable[1][1], It would instead be placed in lookupTable[2][2]
+     */
     private void makeLookUpTable(){
         int smallerP = Math.min(p1, p2);
         BigInteger product = BigInteger.ONE;
@@ -119,8 +81,11 @@ public class GridELVCount {
         }
     }
 
+    /** Finds which spot in the lookupTable the number value belongs to
+     * basically just continually divides by p1 and p2 and counts how much each one happens then returns those counts
+     * as a length 2 array
+     */
     private int[] findLargestPowerFactor(BigInteger value){
-
         int[] coords = new int[2];
         boolean triggered;
         do {
@@ -141,6 +106,8 @@ public class GridELVCount {
         return coords;
     }
 
+    /** Summing a lookUpTable row answers the question "how many numbers have exactly this p2 power with any p1 power
+     * example: summing row 1 gives the count of all numbers with p1^1 as its largest p1 power*/
     public static BigInteger sumLookUpRow(int row, int startingPower, int lastPower){
         if (lastPower == -1)
             lastPower = lookUpTable.length-1;
@@ -151,6 +118,9 @@ public class GridELVCount {
         return sum;
     }
 
+    /** Summing a lookUpTable col answers the question "how many numbers have exactly this p1 power with any p2 power
+     * example: summing col 2 gives the count of all numbers with p2^2 as its largest p2 power
+     */
     public static BigInteger sumLookUpColumn(int column, int startingPower, int lastPower) {
         if (lastPower == -1)
             lastPower = lookUpTable.length-1;
@@ -159,6 +129,12 @@ public class GridELVCount {
             sum = sum.add(lookUpTable[i][column]);
         }
         return sum;
+    }
+
+    public BigInteger getN() { return n;}
+
+    public BigInteger getTotal(){
+        return root.getTotal();
     }
 }
 
