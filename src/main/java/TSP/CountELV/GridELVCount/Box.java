@@ -233,8 +233,9 @@ class Box{
     }
 
 
-    /**child = box we want to add to childBoxes
-     * method does NOT CREATE COPY. changes to this child WILL have ripple effects
+    /**
+     * child = box we want to add to childBoxes
+     * Does NOT CREATE COPY. changes to this child WILL have ripple effects
      * on other chains and must be used carefully
      */
     public void addChildNoCopy(Box child){

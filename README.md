@@ -8,7 +8,7 @@ In collaboration with another undergraduate and Professor Gutekunst, we focused 
 
 **Takeaway**
 
-Calculating the number of ELV is “easy” when an integer n can be expressed in the form p, p1 * p2, p1^k, p1^2 * p2, p1 * p2 * p3, or p1^k * p2^j. This means that the number of minimum-cost Hamiltonian paths in the Circulant TSP can be quickly found from a value of n that can be written in any of those ways.
+Calculating the number of minimum-cost Hamiltonian paths (ELV) that can arise as the unique solution to a Circulant TSP instance is “easy” when an integer n can be expressed in the form p, p1 * p2, p1^k, p1^2 * p2, p1 * p2 * p3, or p1^k * p2^j. This means that the number of ELV can be quickly found when n can be expressed in any of these ways. This helps us understand how the number of potential optimal solutions to Circulant TSP instances grows, and if it is possible to have a brute-force efficient algorithm that finds the best of all those potential solutions.
 
 **Technical Terminology: Edge-Length Vectors (ELV), G-Sequences, and Encoding Sequences**
 

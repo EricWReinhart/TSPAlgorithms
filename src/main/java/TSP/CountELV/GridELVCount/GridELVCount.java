@@ -5,6 +5,7 @@ import java.math.BigInteger;
 /**
  * Algorithm that counts ELV much faster than a permutation approach, which provides more data by
  * solving larger values of n, when n = p1^k * p2^j (k, j > 0)
+ * If you want a debug/more output, set print = true
  */
 public class GridELVCount {
     private BigInteger n;
@@ -56,7 +57,7 @@ public class GridELVCount {
     }
 
     /**
-     * the lookup table is a grid that represents the different power combinations of p1 and p2
+     * The lookup table is a grid that represents the different power combinations of p1 and p2
      * for example, lookupTable[1][2] is the amount of numbers < n/2 such that they have p1^1 * p2^2 as a factor
      * a number goes into the largest slot it possibly can fit
      * for example, if a number has p1^2 * p2^2, it would NOT be placed in lookupTable[1][1], It would instead be placed in lookupTable[2][2]
@@ -81,7 +82,8 @@ public class GridELVCount {
         }
     }
 
-    /** Finds which spot in the lookupTable the number value belongs to
+    /**
+     * Finds which spot in the lookupTable the number value belongs to
      * basically just continually divides by p1 and p2 and counts how much each one happens then returns those counts
      * as a length 2 array
      */
@@ -106,8 +108,10 @@ public class GridELVCount {
         return coords;
     }
 
-    /** Summing a lookUpTable row answers the question "how many numbers have exactly this p2 power with any p1 power
-     * example: summing row 1 gives the count of all numbers with p1^1 as its largest p1 power*/
+    /**
+     * Summing a lookUpTable row answers the question "how many numbers have exactly this p2 power with any p1 power
+     * example: summing row 1 gives the count of all numbers with p1^1 as its largest p1 power
+     */
     public static BigInteger sumLookUpRow(int row, int startingPower, int lastPower){
         if (lastPower == -1)
             lastPower = lookUpTable.length-1;
@@ -118,7 +122,8 @@ public class GridELVCount {
         return sum;
     }
 
-    /** Summing a lookUpTable col answers the question "how many numbers have exactly this p1 power with any p2 power
+    /**
+     * Summing a lookUpTable col answers the question "how many numbers have exactly this p1 power with any p2 power
      * example: summing col 2 gives the count of all numbers with p2^2 as its largest p2 power
      */
     public static BigInteger sumLookUpColumn(int column, int startingPower, int lastPower) {

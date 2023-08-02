@@ -247,7 +247,7 @@ public class AlgorithmTester {
             int p1 = primes[i];
             for (int l = i+1; l < primes.length; l++) {
                 int p2 = primes[l];
-                GridELVCount test = new GridELVCount(p1, k, p2, l);
+                GridELVCount test = new GridELVCount(p1, k, p2, j);
                 SmartELVCount smartAlg = new SmartELVCount((int) test.getN().longValue(), false);
                 int smartCount = SmartELVCount.getCountELV();
                 valuesChecked++;
