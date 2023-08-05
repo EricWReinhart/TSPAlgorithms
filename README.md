@@ -27,6 +27,7 @@ Encoding sequences are built similarly to G-Sequences, except the actual number 
 **Run the Program**
 
 Open terminal & navigate to a folder you wish to run the project from, then type the following commands:
+
     git clone https://github.com/EricWReinhart/TSPAlgorithms.git 
     
     cd TSPAlgorithms 
