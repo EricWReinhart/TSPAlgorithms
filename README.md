@@ -25,10 +25,14 @@ Encoding sequences are built similarly to G-Sequences, except the actual number 
 **Example**: consider n = 8 which has edge-lengths {1, 2, 3, 4}. The valid encoding sequences are (8,1), (8, 3), (8,2,1), (8,2,3), (8,4,1), (8,4,3), (8,4,2,1), and (8,4,2,3). Both (8,4,2,1) and (8,4,2,3) map to the G-Sequence (8,4,2,1), since GCD(3,1) = GCD(2,1) = 1. An invalid encoding sequence would be (8,3,1) since GCD(8,3) = 1 = GCD(3,1), so the GCD is not strictly decreasing.
 
 **Run the Program**
+
 Open terminal & navigate to a folder you wish to run the project from, then type the following commands:
     git clone https://github.com/EricWReinhart/TSPAlgorithms.git 
+    
     cd TSPAlgorithms 
+    
     gradle wrapper 
+    
     ./gradlew run
 
 The output is from AlgorithmTester, which tests the accuracy of each algorithm given various inputs. Some sample values of n and their corresponding ELV count are also included to show how high the number of ELV can be for large values of n.
